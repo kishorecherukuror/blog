@@ -47,3 +47,4 @@ gem 'tzinfo-data'
 gem 'coffee-script-source', '1.8.0'
 
 gem 'pry'
+gem 'devise'

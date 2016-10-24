@@ -16,7 +16,7 @@ class PostsController < ApplicationController
   end
 
   def index
-    @posts = Post.all
+    @posts = Post.most_recent(2)
   end
 
   # GET /posts/1
@@ -40,6 +40,7 @@ class PostsController < ApplicationController
 
     respond_to do |format|
       if @post.save
+        UserMailer.registration_mailer(@post,current_user).deliver
         format.html { redirect_to @post, notice: 'Post was successfully created.' }
         format.json { render :show, status: :created, location: @post }
       else
