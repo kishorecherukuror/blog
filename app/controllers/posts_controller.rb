@@ -18,7 +18,7 @@ class PostsController < ApplicationController
   end
 
   def index
-    @posts = Post.all
+    @posts = Post.paginate(:page => params[:page], :per_page => 5)
   end
 
   # GET /posts/1
@@ -84,7 +84,7 @@ class PostsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def post_params
-      params.require(:post).permit(:name,:user_id)
+      params.require(:post).permit(:name,:user_id,:avatar)
     end
 
     def comment_params

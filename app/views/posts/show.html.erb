@@ -1,6 +1,8 @@
 <p><h3>Post created at :</h3> <%= time_ago_in_words(@post.created_at) %>  ago</p>
 <p id="notice"><%= notice %></p>
-
+<p>
+	<%= image_tag @post.avatar.url(:medium) %>
+</p>
 <p>
   <strong>Name:</strong>
   <%= @post.name %>
