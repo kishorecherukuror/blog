@@ -10,13 +10,15 @@ class PostsController < ApplicationController
   end
 
   def create_comment
-    if Comment.create(comment_params)
+    if Comment.create(comment_params)      
+      @post = Post.find(comment_params[:post_id])
+      UserMailer.comment_mailer(@post,comment_params).deliver
       redirect_to root_path
     end
   end
 
   def index
-    @posts = Post.most_recent(2)
+    @posts = Post.paginate(:page => params[:page], :per_page => 5)
   end
 
   # GET /posts/1
@@ -82,7 +84,7 @@ class PostsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def post_params
-      params.require(:post).permit(:name)
+      params.require(:post).permit(:name,:user_id,:avatar)
     end
 
     def comment_params
