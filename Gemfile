@@ -51,3 +51,5 @@ gem 'devise'
 gem 'will_paginate', '~> 3.1.0'
 gem "twitter-bootstrap-rails"
 gem "paperclip", git: "git://github.com/thoughtbot/paperclip.git"
+gem 'elasticsearch-model'
+gem 'elasticsearch-rails'
